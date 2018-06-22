@@ -1,0 +1,601 @@
+@-webkit-keyframes reference-progressbar {
+    0% { width: 0; }
+    100% { width: 100%; }
+}
+
+@keyframes reference-progressbar {
+    0% { width: 0; }
+    100% { width: 100%; }
+}
+
+@-webkit-keyframes bounce-horizontal {
+    16.65% { @include translateX(8px); }
+    33.3% { @include translateX(-6px);}
+    49.95% { @include translateX(4px); }
+    66.6% { @include translateX(-2px); }
+    83.25% { @include translateX(1px); }
+    100% { @include translateX(0); }
+}
+
+@keyframes bounce-horizontal {
+    16.65% { @include translateX(8px); }
+    33.3% { @include translateX(-6px);}
+    49.95% { @include translateX(4px); }
+    66.6% { @include translateX(-2px); }
+    83.25% { @include translateX(1px); }
+    100% { @include translateX(0); }
+}
+
+section.reference {
+    overflow: hidden;
+    background-color: $black;
+
+    @include full-block();
+
+    .reference-container {
+
+        max-width: 1920px;
+        margin: 0 auto;
+        padding: 50px 20px;
+        border-bottom: 8px solid #61dafb;
+
+        @include full-block();
+
+        .reference-slider {
+            max-width: 1340px;
+            margin: 0 auto;
+            padding: 0 60px;
+            z-index: 2;
+
+            @include full-block();
+
+            &.disabled-click:after {
+                content: '';
+                z-index: 4;
+                cursor: pointer;
+
+                @include full-absolute();
+            }
+
+            .reference-dots {
+                max-width: 1240px;
+                margin: 0 auto;
+
+                @include full-block();
+
+                ul {
+                    margin: 0;
+                    padding: 0;
+                    margin-left: -20px;
+
+                    &.dots {
+                        @include flex-box();
+
+                        li {
+                            list-style-type: none;
+                            width: 16.6666%;
+                            cursor: pointer;
+                            text-align: center;
+                            margin-left: 20px;
+
+                            .reference-icon {
+                                display: block;
+                                width: 100%;
+                                height: 70px;
+                                padding: 5px 0;
+
+                                @include flex-box();
+                                @include align-items(center);
+                                @include justify-content(center);
+
+                                img {
+                                    width: 100%;
+                                    height: auto;
+
+                                    @include backface-visibility(hidden);
+                                    @include transition(opacity .5s ease);
+                                }
+                            }
+
+                            .progress-bar {
+                                margin-top: 15px;
+                                height: 4px;
+                                background-color: white;
+
+                                @include full-block();
+                                @include border-radius(4px);
+                            }
+
+                            &.active {
+                                img { @include opacity(.2); }
+
+                                .progress-bar {
+                                    .bar {
+                                        display: inline-block;
+                                        position: absolute;
+                                        height: 4px;
+                                        left: 0;
+                                        width: 0;
+                                        background-color: $blue;
+                                    }
+
+                                    &.stop {
+                                        .bar { @include animation-play-state(paused); }
+                                    }
+                                }
+                            }
+
+                            &:hover {
+                                img { @include opacity(.2); }
+                            }
+                        }
+                        
+                        &.play {
+                            &.delay {
+                                li {
+                                    &.active {
+                                        .progress-bar {
+                                            .bar {
+                                                @include animation-name(reference-progressbar);
+                                                @include animation-duration(5500ms);
+                                                @include animation-delay(500ms);
+                                                @include animation-timing-function(linear);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            &.delay-none {
+                                li {
+                                    &.active {
+                                        .progress-bar {
+                                            .bar {
+                                                @include animation-name(reference-progressbar);
+                                                @include animation-delay(0ms);
+                                                @include animation-duration(6000ms);
+                                                @include animation-timing-function(linear);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        &.stop {
+                            &.delay {
+                                li {
+                                    &.active {
+                                        .progress-bar {
+                                            .bar {
+                                                @include animation-name(reference-progressbar);
+                                                @include animation-duration(5500ms);
+                                                @include animation-delay(500ms);
+                                                @include animation-timing-function(linear);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            &.delay-none {
+                                li {
+                                    &.active {
+                                        .progress-bar {
+                                            .bar {
+                                                @include animation-name(reference-progressbar);
+                                                @include animation-delay(0ms);
+                                                @include animation-duration(0ms);
+                                                @include animation-timing-function(linear);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .reference-slider-box {
+                max-width: 1240px;
+                width: 100%;
+                margin: 0 auto;
+                margin-top: 40px;
+                overflow: hidden;
+
+                @include full-block();
+
+                .reference-slider-container {
+                    ul {
+                        overflow: hidden;
+                        margin: 0;
+                        padding: 0;
+                        
+                        @include flex-box();
+                        @include flex-wrap(wrap);
+
+                        li.element,
+                        li.clone-last,
+                        li.clone-first {
+                            max-width: 1240px;
+                            width: 100%;
+
+                            .slider-content {
+                                @include full-block();
+
+                                .content {
+                                    @include flex-box();
+
+                                    height: 100%;
+                                    background-color: white;
+
+                                    .reference {
+                                        width: 58%;
+                                        position: relative;
+                                        display: block;
+
+                                        a {
+                                            height: 100%;
+                                            width: 100%;
+
+                                            .reference-background {
+                                                overflow: hidden;
+
+                                                @include full-absolute();
+                                                
+                                                .bg {
+                                                    height: 100%;
+                                                    z-index: 1;
+                                                    background-repeat: no-repeat;
+                                                    background-position: center center;
+
+                                                    @include full-block();
+                                                    @include backface-visibility(hidden);
+                                                    @include transition(all .3s ease);
+                                                    @include background-size(cover);
+                                                }
+
+                                                &:after {
+                                                    content: '';
+                                                    z-index: 2;
+
+                                                    @include full-absolute();
+                                                    @include gradient-rgba(rgba(0,0,0,0.85), rgba(0,0,0,0), 45deg, 0%, 65%);
+                                                }
+                                            }
+
+                                            .reference-box {
+                                                position: absolute;
+                                                bottom: 0;
+                                                left: 0;
+                                                z-index: 3;
+                                                border-left: 4px solid $blue;
+                                                padding: 45px;
+
+                                                .reference-title {
+                                                    max-width: 450px;
+                                                    padding-bottom: 30px;
+                                                    color: white;
+                                                    font-size: 1.42em;
+                                                    line-height: 1.3;
+                                                    font-weight: 700;
+                                                    
+                                                    @include full-block();
+                                                }
+                                                .button-line-middle {
+                                                    @include buttonWithLine(white, transparent, white, white, $blue, transparent, $blue, $blue);
+                                                }
+                                            }
+
+                                            &:hover {
+                                                .reference-background {
+                                                    .bg { @include scale(1.1); }
+                                                }
+
+                                                .reference-box {
+                                                    .button-line-middle {
+                                                        color: white;
+                                                        border: 2px solid $blue;
+
+                                                        &:after {
+                                                            background-color: white;
+                                                            @include animation-name(bounce-horizontal);
+                                                            @include animation-duration(1s);
+                                                            @include animation-timing-function(ease-in-out);
+                                                            @include animation-iteration-count(1);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    .quote {
+                                        width: 42%;
+                                        text-align: center;
+                                        position: relative;
+                                        padding: 65px 85px 50px;
+
+                                        .quote-icon {
+                                            position: absolute;
+                                            top: 0;
+                                            left: 0;
+                                            right: 0;
+                                            margin: 0 auto;
+                                            z-index: 0;
+                                            font-style: normal;
+                                            font-weight: 500;
+                                            font-size: 17em;
+                                            color: $blue;
+                                            line-height: 1;
+
+                                            @include opacity(.2);
+                                        }
+
+                                        .quote-person {
+                                            font-size: 1.14em;
+                                            line-height: 1.75;
+                                            margin-bottom: 40px;
+                                            z-index: 1;
+                                            font-style: italic;
+                                            
+                                            @include full-block();
+                                        }
+
+                                        .quote-person-pictures {
+                                            display: inline-block;
+                                            width: auto;
+                                            height: auto;
+                                            border: 2px solid $blue;
+                                            position: relative;
+                                            margin-bottom: 18px;
+
+                                            @include border-radius(50%);
+
+                                            &:after {
+                                                content: '';
+
+                                                @include full-absolute();
+                                                @include box-shadow(inset 0 0 0 3px white);
+                                                @include border-radius(50%);
+                                            }
+
+
+                                            img {
+                                                max-width: 100px;
+                                                width: 100%;
+
+                                                @include border-radius(50%);
+                                            }
+
+                                        }
+                                        .quote-person-data {
+                                            font-size: 1.14em;
+                                            line-height: 1.25;
+
+                                            p.font-size-12 { font-size: .86em; }
+
+                                            p { margin-bottom: 7px; }
+
+                                            strong { font-weight: bold; }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .reference-slider-left,
+            .reference-slider-right {
+                top: 122px;
+                bottom: 0;
+                margin: auto 0;
+                position: absolute;
+                width: 40px;
+                height: 40px;
+                background-color: $blue;
+                text-align: center;
+                cursor: pointer;
+
+                @include border-radius(4px);
+                @include transition(background-color .3s ease);
+
+                i {
+                    position: relative;
+                    top: 14px;
+                    border: solid white;
+                    border-width: 0 2px 2px 0;
+                    padding: 4.5px;
+                    display: inline-block;
+
+                    @include transition(border-color .3s ease);
+                }
+
+                &:hover {
+                    background-color: white;
+
+                    i { border-color: $blue; }
+                }
+            }
+
+            .reference-slider-left {
+                left: 0;
+                
+                i { right: -2px; @include rotate(135deg); }
+            }
+
+            .reference-slider-right {
+                right: 0;
+
+                i { left: -2px; @include rotate(-45deg); }
+            }
+        }
+
+        @media screen and (max-width: $tablet) {
+            .reference-slider {
+                padding: 0;
+
+                .reference-slider-box {
+                    margin-top: 15px;
+
+                    .reference-slider-container {
+                        ul {
+                            height: auto;
+                            li.element,
+                            li.clone-last,
+                            li.clone-first {
+                                .slider-content {
+                                    .content {
+                                        width: 100%;
+                                        display: block;
+
+                                        @include flex-wrap(wrap);
+
+                                        .reference, 
+                                        .quote { 
+                                            display: block; 
+                                            width: 100%; 
+                                        }
+
+                                        .reference {
+                                            height: 500px;
+                                            overflow: visible;
+                                            a { .reference-box { padding-bottom: 45px; } }
+                                        }
+                                        .quote {
+                                            padding: 60px 85px 30px;
+                                            .quote-icon { top: 12px; }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .reference-slider-left,
+                .reference-slider-right {
+                    display: none;
+                }
+            }
+        }
+
+        @media screen and (max-width: $mobile) {
+            .reference-slider {
+                overflow: hidden;
+
+                .scroll-x {
+                    height: 110px;
+                    overflow-x: auto;
+                    overflow-y: hidden;
+                }
+
+                .reference-slider-box {
+                    margin-top: 10px;
+
+                    .reference-slider-container {
+                        ul {
+                            li.element,
+                            li.clone-last,
+                            li.clone-first {
+                                .slider-content {
+                                    .content {
+                                        .reference {
+                                            height: 200px;
+
+                                            a {
+                                                .reference-box {
+                                                    padding-bottom: 15px;
+                                                    padding-left: 15px;
+
+                                                    .reference-title { padding-bottom: 0; }
+
+                                                    .button-line-middle {
+                                                        position: absolute;
+                                                        z-index: 2;
+                                                        color: $blue;
+                                                        border: 2px solid $blue;
+                                                        bottom: -65px;
+
+                                                        &:after { background-color: $blue; }
+                                                    }
+
+                                                }
+                                                &:hover {
+                                                    .reference-box {
+                                                        .button-line-middle {
+
+                                                            color: $black;
+                                                            border-color: $black;
+
+                                                            &:after { background-color: $black; }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        
+                                        .quote {
+                                            padding: 45px 20px 30px;
+                                            border-top: 1px solid #e4e9ed;
+                                            margin-top: 85px;
+
+                                            .quote-icon { top: 0; }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: $tablet) {
+        .reference-container { padding-top: 40px; padding-bottom: 40px; }
+    }
+
+    &.loading {
+        &:after,
+        &:before {
+            @include opacity(0);
+            @include transition (opacity .5s ease-in-out);
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            display: inline-block;
+            left: calc(50% - 30px);
+            top: 50%;
+            z-index: 100;
+
+            @include loader($blue, $gray, .5s, 6px, 60px, 60px, solid);
+            @include translate(-50%, -50%);
+        }
+
+        &:before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            z-index: 99;
+            background-color: white;
+        }
+    }
+
+    &.loading.show {
+        height: 100%;
+        max-height: 300px;
+        overflow: hidden;
+        
+        &:after,
+        &:before {
+            @include opacity(1);
+        }
+    }
+}
