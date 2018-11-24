@@ -9,17 +9,17 @@
 ## SETTINGS
 
 ```html
-    <script>
-		window.addEventListener('load', function() { 
-			referenceSlider.app(
-                config = {
-                    namespace: 'reference-slider-1',
-                    autoPlay: true,
-                    playTime: 6000,
-                    slideTime: 500,
-                })
-		}, false);
-    </script>
+<script>
+	window.addEventListener('load', function() { 
+		referenceSlider.app(
+            config = {
+                namespace: 'reference-slider-1',
+                autoPlay: true,
+                playTime: 6000,
+                slideTime: 500,
+            })
+	}, false);
+</script>
 ```
 
 
